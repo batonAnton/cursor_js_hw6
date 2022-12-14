@@ -28,17 +28,6 @@ const students = [{
 
 function getSubjects (students) {
     let subKeys = Object.keys(students.subjects);
-    // console.log(subKeys);
-    // let res = toUpperKeys(subKeys);
-    // function toUpperKeys() {
-    //   let conclusion =  Object.keys(students.subjects).reduce((acc, key) => {
-    //     acc[key.charAt(0).toUpperCase()+ key.slice(1)] = students[key];
-    //     return acc;
-    //   },[]);
-    //   return conclusion;
-    // }
-    
-    // return res;
     let newArr = [];
     for (let i = 0; i < subKeys.length; i++){
        newArr.push(subKeys[i].charAt(0).toUpperCase() + subKeys[i].slice(1));
@@ -84,23 +73,50 @@ function getStudentInfo(students){
   let newArr = Object.entries(students);
   console.log('task 3: Інформація про студента -\nname: ' + students.name + "\n"  + 'course: ' + students.course + '\n' + 'AverageMark: ' + getAverageMark(students));
 }
-getStudentInfo(students[1]);
+getStudentInfo(students[2]);
 
 // task 4 
-function getStudentsNames(students){
+
+function getStudentsNames(students) {
+  let newArrNames = [];
+  students.map((student) => {newArrNames.push(student.name);});
+  return newArrNames;
+}
+
+
+console.log('task 4 : ' + getStudentsNames(students).sort());
+
+// task 5 
+function getBestStudent(students){
+  let firstSt = 'Tanya' + getAverageMark(students[0]);
+  let secondSt = getAverageMark(students[1]);
+  let thirdSt = 'Anton ' +  getAverageMark(students[2]);
   let newArr = [];
-  newArr.push(students.map(({name}) => {
-     console.log(name);
+  newArr.push(firstSt, secondSt, thirdSt);
+  let  largest = 0;
+  for (i = 0; i < newArr.length; i++){
+      if (newArr[i]>largest) {
+          largest=newArr[i];
+      }
+  }
+  return largest;
+
   
-     
-    })  ) 
-
-};
-getStudentsNames(students);
+}
+console.log('task 5. Best students is: ' + getBestStudent(students) ); 
 
 
-// function sortAlphabets(name) {
-//   return name.split('').sort().join('');ф
-// };
-// console.log(sortAlphabets(name)); 
- 
+// task 6 
+function calculateWordLetters(str){
+  let obj=[];
+  for(i = 0, length = str.length; i < length; i++) {
+      let a = str.charAt(i)
+      obj[a] = (isNaN(obj[a]) ? 1 : obj[a] + 1);
+  }
+  console.log('task 6: ' ,  obj);
+  // return obj;
+  }
+  let str='тест';
+calculateWordLetters(str);
+
+
